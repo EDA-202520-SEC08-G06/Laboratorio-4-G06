@@ -63,15 +63,19 @@ def load_data(control):
     return books, authors, tags, book_tags, books_to_read
 
 
-def print_books_to_read(results):
+def print_books_to_read(results): # INCOMPLETA  
+    
+    print("Los libros por leer son: ")
+
     # TODO Imprimir los libros por leer
-    pass
+    
 
 
-def print_tests_results(queue_results, stack_results):
+def print_tests_results(queue_results, stack_results): # CHECK
     """
     Imprime los resultados de las pruebas de rendimiento
     """
+    
     print("\nTiempos de ejecución para Cola: \n")
 
     print("Tiempo de ejecución para enqueue:",
@@ -81,8 +85,15 @@ def print_tests_results(queue_results, stack_results):
     print("Tiempo de ejecución para dequeue:",
           f"{queue_results['dequeue_time']:.3f}", "[ms]")
 
-    print("\nTiempos de ejecución para Pila: \n")
 
+    print("\nTiempos de ejecución para Pila: \n")
+    
+    print("Tiempo de ejecución para enqueue:",
+          f"{stack_results['push_time']:.3f}", "[ms]")
+    print("Tiempo de ejecución para peek:",
+          f"{stack_results['top_time']:.3f}", "[ms]")
+    print("Tiempo de ejecución para dequeue:",
+          f"{stack_results['pop_time']:.3f}", "[ms]")
     # TODO Imprimir los resultados de las pruebas de rendimiento de la pila
 
 
@@ -91,7 +102,7 @@ control = new_logic()
 
 
 # main del ejercicio
-def main():
+def main(): # REVISAR EL NOMBRE DE LOS PRINT !!!
     """
     Menu principal
     """
@@ -121,7 +132,7 @@ def main():
 
             result = logic.get_user_position_on_queue(
                 control, int(user_id), int(book_id))
-            # TODO Imprimir la posición del usuario en la cola
+            print_user_pos_queue(result)# TODO Imprimir la posición del usuario en la cola
 
         elif int(inputs[0]) == 4:
             size = input("Indique tamaño de la muestra: ")

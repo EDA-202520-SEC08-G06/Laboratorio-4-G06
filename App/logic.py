@@ -29,6 +29,8 @@ import os
 import time
 from DataStructures.List import array_list as lt
 from DataStructures.Queue import queue as q
+from DataStructures.Stack import stack as st
+
 # TODO Importar las librerías correspondientes para el manejo de pilas y colas
 
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
@@ -38,7 +40,7 @@ El controlador se encarga de mediar entre la vista y el modelo.
 """
 
 
-def new_logic():
+def new_logic(): #No entendi muy bien lo de asociación de books y tags (creo que es books to read)
     """
     Inicializa el catálogo de libros. Crea una lista vacia para guardar
     todos los libros, adicionalmente, crea una lista vacia para los autores,
@@ -56,8 +58,7 @@ def new_logic():
     catalog['authors'] = lt.new_list()
     catalog['tags'] = lt.new_list()
     catalog['book_tags'] = lt.new_list()
-    # TODO Implementar la inicialización de la lista de asociación de libros y tags
-    catalog['books_to_read'] = None
+    catalog['books_to_read'] = lt.new_list() # TODO Implementar la inicialización de la lista de asociación de libros y tags
     catalog["book_sublist"] = None
     return catalog
 
@@ -65,7 +66,7 @@ def new_logic():
 # Funciones para la carga de datos
 
 
-def load_data(catalog):
+def load_data(catalog): #CHECK
     """
     Carga los datos de los archivos y cargar los datos en la
     estructura de datos
@@ -73,7 +74,7 @@ def load_data(catalog):
     books, authors = load_books(catalog)
     tag_size = load_tags(catalog)
     book_tag_size = load_books_tags(catalog)
-    # TODO Cargar los datos de libros para leer
+    books_to_read = load_books_to_read(catalog) # TODO Cargar los datos de libros para leer
     return books, authors, tag_size, book_tag_size, books_to_read
 
 
@@ -112,36 +113,55 @@ def load_books_tags(catalog):
     return book_tag_size(catalog)
 
 
-def load_books_to_read(catalog):
+def load_books_to_read(catalog): #CHECK
     """
     Carga la información del archivo to_read y los agrega a la lista de libros por leer
     """
-    # TODO Implementar la carga de los libros por leer del archivo to_read
+    bookstoreadfile = data_dir + "/to_read.csv" # TODO Implementar la carga de los libros por leer del archivo to_read
+    input_file = csv.DictReader(open(bookstoreadfile, encoding='utf-8'))
+    for booktoread in input_file: 
+        add_book_to_read(catalog, bookstoread)
     return books_to_read_size(catalog)
+
 
 # Funciones de consulta sobre el catálogo
 
 
-def get_books_stack_by_user(catalog, user_id):
+def get_books_stack_by_user(catalog, user_id): # REVISAR
     """
     Retorna una pila con los libros que un usuario tiene por leer.
     """
     books_stack = st.new_stack()
 
-    # TODO Completar la función que retorna los libros por leer de un usuario. Se debe usar el TAD Pila para resolver el requerimiento
+    for index in range(0, lt.size(catalog["books_to_read"])) # TODO Completar la función que retorna los libros por leer de un usuario. Se debe usar el TAD Pila para resolver el requerimiento
+        book_to_read = lt.get_element(catalog["books_to_read"], index)
+
+        if book_to_read["user_id"] == user_id: 
+           st.push(books_stack, book_to_read)
 
     return books_stack
 
 
-def get_user_position_on_queue(catalog, user_id, book_id):
+
+def get_user_position_on_queue(catalog, user_id, book_id): # REVISAR
     """
     Retorna la posición de un usuario en la cola para leer un libro.
     """
     queue = q.new_queue()
+    position = "El usuario no se encuentra en la cola"
 
-    # TODO Completar la función que retorna la posición de un usuario en la cola para leer un libro. Se debe usar el TAD Cola para resolver el requerimiento.
+    for index in range(0, lt.size(catalog["books_to_read"])):  # TODO Completar la función que retorna la posición de un usuario en la cola para leer un libro. Se debe usar el TAD Cola para resolver el requerimiento.
+        book_to_read = lt.get_element(catalog["books_to_read"], index)
+
+        if book_to_read["book_id"] == book_id: 
+            q.enqueue(queue, book_to_read["user_id"])
+
+            if book_to_read["user_id"] == user_id:
+                return q.size(queue)
 
     return position
+
+
 
 # Funciones para agregar informacion al catalogo
 
@@ -261,8 +281,8 @@ def book_tag_size(catalog):
 
 
 def books_to_read_size(catalog):
-    # TODO Implementar la función que retorna el tamaño de la lista de libros por leer
-    pass
+    return lt.size(catalog["books_to_read"])# TODO Implementar la función que retorna el tamaño de la lista de libros por leer
+    
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 

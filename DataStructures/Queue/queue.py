@@ -1,7 +1,7 @@
 # COLAS 
 
-from DataStrucutres import array_list.py as list 
-from DataStrucutres import single_linked_list.py as list
+from DataStrucutres import array_list as list 
+#from DataStrucutres import single_linked_list as list
 
 
 

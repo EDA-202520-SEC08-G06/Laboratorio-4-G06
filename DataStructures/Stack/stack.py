@@ -25,7 +25,7 @@ def pop(my_stack):
 
 
 
-def is_empty(my_stack): 
+def is_empty(my_stack) -> bool: 
     
     return list.is_empty(my_stack) 
 
@@ -37,7 +37,7 @@ def top(my_stack):
 
 
 
-def size(my_stack): 
+def size(my_stack) -> int: 
     
     return list.size(my_stack) 
 

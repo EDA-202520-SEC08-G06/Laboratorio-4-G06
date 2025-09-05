@@ -94,10 +94,10 @@ def remove_first (my_list):
         raise Exception('IndexError: list index out of range')
 
     else:
-        first_element = first_element(my_list)
-        my_list["elements"] = my_list["elements"][1:]
         my_list["size"] = my_list["size"] - 1
-        return first_element
+        
+    return my_list["elements"].pop(0)
+
 
 
 
@@ -107,10 +107,10 @@ def remove_last (my_list):
         raise Exception('IndexError: list index out of range')
 
     else: 
-        last_element = last_element(my_list)
-        my_list["elements"] = my_list["elements"][:-1]
         my_list["size"] = my_list["size"] - 1
-        return last_element
+    
+    return my_list["elements"].pop(my_list["size"])
+
 
 
 

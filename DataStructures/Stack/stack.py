@@ -1,6 +1,6 @@
 # PILAS
 
-from DataStructures import array_list as list 
+from DataStructures.List import array_list as list 
 #from DataStructures import single_linked_list as list
 
 
@@ -13,15 +13,15 @@ def new_stack():
 
 
 
-def push(my_stack): 
+def push(my_stack, element): 
     
-    return  list.add_first(my_stack)
+    return  list.add_last(my_stack, element)
 
 
 
 def pop(my_stack):
     
-    return list.remove_first(my_stack)
+    return list.remove_last(my_stack)
 
 
 
@@ -33,7 +33,7 @@ def is_empty(my_stack) -> bool:
 
 def top(my_stack): 
     
-    return list.first_element(my_stack)
+    return list.last_element(my_stack)
 
 
 

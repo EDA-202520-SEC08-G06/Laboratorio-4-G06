@@ -1,6 +1,6 @@
 # COLAS 
 
-from DataStructures import array_list as list 
+from DataStructures.List import array_list as list 
 #from DataStructures import single_linked_list as list
 
 

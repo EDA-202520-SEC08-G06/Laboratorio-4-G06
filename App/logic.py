@@ -120,7 +120,7 @@ def load_books_to_read(catalog): #CHECK
     bookstoreadfile = data_dir + "/to_read.csv" # TODO Implementar la carga de los libros por leer del archivo to_read
     input_file = csv.DictReader(open(bookstoreadfile, encoding='utf-8'))
     for booktoread in input_file: 
-        add_book_to_read(catalog, bookstoread)
+        add_book_to_read(catalog, booktoread)
     return books_to_read_size(catalog)
 
 
@@ -133,7 +133,7 @@ def get_books_stack_by_user(catalog, user_id): # REVISAR
     """
     books_stack = st.new_stack()
 
-    for index in range(0, lt.size(catalog["books_to_read"])) # TODO Completar la función que retorna los libros por leer de un usuario. Se debe usar el TAD Pila para resolver el requerimiento
+    for index in range(0, lt.size(catalog["books_to_read"])): # TODO Completar la función que retorna los libros por leer de un usuario. Se debe usar el TAD Pila para resolver el requerimiento
         book_to_read = lt.get_element(catalog["books_to_read"], index)
 
         if book_to_read["user_id"] == user_id: 
@@ -387,10 +387,10 @@ def measure_stack_performance(catalog):
 
     # Medir pop
     start_time = get_time()
-    while not q.is_empty(stack):
+    while not st.is_empty(stack):
         st.pop(stack)
     end_time = get_time()
-    dequeue_time = delta_time(start_time, end_time)
+    pop_time = delta_time(start_time, end_time)
 
     # TODO Implementar la medición de tiempo para la operación pop
 

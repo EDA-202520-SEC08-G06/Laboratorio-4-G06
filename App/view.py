@@ -67,7 +67,7 @@ def print_books_to_read(results): # INCOMPLETA
     
     print("Los libros por leer son: ")
 
-    # TODO Imprimir los libros por leer
+    print(str(results))# TODO Imprimir los libros por leer
     
 
 
@@ -88,11 +88,11 @@ def print_tests_results(queue_results, stack_results): # CHECK
 
     print("\nTiempos de ejecución para Pila: \n")
     
-    print("Tiempo de ejecución para enqueue:",
+    print("Tiempo de ejecución para push:",
           f"{stack_results['push_time']:.3f}", "[ms]")
-    print("Tiempo de ejecución para peek:",
+    print("Tiempo de ejecución para top_time:",
           f"{stack_results['top_time']:.3f}", "[ms]")
-    print("Tiempo de ejecución para dequeue:",
+    print("Tiempo de ejecución para pop_time:",
           f"{stack_results['pop_time']:.3f}", "[ms]")
     # TODO Imprimir los resultados de las pruebas de rendimiento de la pila
 
